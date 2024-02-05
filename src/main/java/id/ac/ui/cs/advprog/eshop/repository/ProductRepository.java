@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public class ProductRepository {
   private List<Product> productData = new ArrayList<>();
-  public int id = 1;
 
   public Product create(Product product) {
     productData.add(product);
@@ -21,6 +20,13 @@ public class ProductRepository {
     return productData.iterator();
   }
 
+  public Product edit(Product editedProduct) {
+    String editedProductId = editedProduct.getProductId();
+    Product productInRepository = this.findById(editedProductId);
+    int indexEditedProduct = productData.indexOf(productInRepository);
+    productData.set(indexEditedProduct, editedProduct);
+    return editedProduct;
+  }
   public Product deleteById(String productId) {
     Product deletedProduct = this.findById(productId);
     productData.remove(deletedProduct);
