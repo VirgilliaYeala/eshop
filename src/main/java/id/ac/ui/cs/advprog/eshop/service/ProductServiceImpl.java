@@ -44,9 +44,4 @@ public class ProductServiceImpl implements ProductService {
     Product deletedProduct = productRepository.deleteById(productId);
     return  deletedProduct;
   }
-
-  public Product edit(Product editedProduct) {
-    productRepository.edit(editedProduct);
-    return editedProduct;
-  }
 }
