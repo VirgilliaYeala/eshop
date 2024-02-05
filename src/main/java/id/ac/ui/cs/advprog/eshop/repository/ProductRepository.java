@@ -20,8 +20,26 @@ public class ProductRepository {
     return product;
   }
 
-
   public Iterator<Product> findAll() {
     return productData.iterator();
+  }
+
+  public Product edit(Product editedProduct) {
+    String editedProductId = editedProduct.getProductId();
+    Product productInRepository = this.findById(editedProductId);
+    int indexEditedProduct = productData.indexOf(productInRepository);
+    productData.set(indexEditedProduct, editedProduct);
+    return editedProduct;
+  }
+
+  public Product findById(String findProductId) {
+    Iterator<Product> productIterator = this.findAll();
+    while (productIterator.hasNext()) {
+      Product dataProduct = productIterator.next();
+      if (dataProduct.getProductId().equals(findProductId)) {
+        return dataProduct;
+      }
+    }
+    return null;
   }
 }
