@@ -203,7 +203,7 @@ public class ProductRepositoryTest {
         product.setProductQuantity(100);
         productRepository.create(product);
 
-        Product deletedProduct = productRepository.delete(product.getProductId());
+        Product deletedProduct = productRepository.deleteById(product.getProductId());
         assertEquals(product.getProductId(), deletedProduct.getProductId());
         assertEquals(product.getProductName(), deletedProduct.getProductName());
         assertEquals(product.getProductQuantity(), deletedProduct.getProductQuantity());
@@ -216,7 +216,7 @@ public class ProductRepositoryTest {
     void testDeleteProductIfEmpty() {
         String randomId = UUID.randomUUID().toString();
 
-        Product deletedProduct = productRepository.delete(randomId);
+        Product deletedProduct = productRepository.deleteById(randomId);
         assertNull(deletedProduct);
     }
 
@@ -234,7 +234,7 @@ public class ProductRepositoryTest {
 
         String randomId = UUID.randomUUID().toString();
 
-        Product findedProduct = productRepository.delete(randomId);
+        Product findedProduct = productRepository.deleteById(randomId);
         assertNull(findedProduct);
     }
 }
