@@ -26,6 +26,10 @@ public class ProductServiceImpl implements ProductService {
     return product;
   }
 
+  @Override
+  public Product findById(String findProductId) {
+    return productRepository.findById(findProductId);
+  }
 
   @Override
   public List<Product> findAll() {
@@ -40,9 +44,8 @@ public class ProductServiceImpl implements ProductService {
     productRepository.edit(editedProduct);
     return editedProduct;
   }
-
-  @Override
-  public Product findById(String findProductId) {
-    return productRepository.findById(findProductId);
+  public Product deleteById(String productId) {
+    Product deletedProduct = productRepository.deleteById(productId);
+    return  deletedProduct;
   }
 }
