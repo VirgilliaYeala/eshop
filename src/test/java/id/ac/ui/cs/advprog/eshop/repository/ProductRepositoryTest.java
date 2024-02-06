@@ -27,8 +27,8 @@ public class ProductRepositoryTest {
     void testCreateAndFind() {
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        product.setProductName("Product 1");
-        product.setProductQuantity(100);
+        product.setProductName("Iphone 15 Pro Max");
+        product.setProductQuantity(10);
         productRepository.create(product);
 
         Iterator<Product> productIterator = productRepository.findAll();
@@ -50,14 +50,14 @@ public class ProductRepositoryTest {
     void testFindAllIfMoreThanOneProduct() {
         Product product1 = new Product();
         product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        product1.setProductName("Product 1");
-        product1.setProductQuantity(100);
+        product1.setProductName("Iphone 15 Pro Max");
+        product1.setProductQuantity(10);
         productRepository.create(product1);
 
         Product product2 = new Product();
         product2.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd7");
-        product2.setProductName("Product 2");
-        product2.setProductQuantity(200);
+        product2.setProductName("Iphone 14 Pro Max");
+        product2.setProductQuantity(20);
         productRepository.create(product2);
 
         Iterator<Product> productIterator = productRepository.findAll();
@@ -73,8 +73,8 @@ public class ProductRepositoryTest {
     @Test
     void testFindByIdProduct() {
         Product product = new Product();
-        product.setProductName("Product 1");
-        product.setProductQuantity(100);
+        product.setProductName("Iphone 15 Pro Max");
+        product.setProductQuantity(10);
         productRepository.create(product);
 
         Product findedProduct = productRepository.findById(product.getProductId());
@@ -86,13 +86,13 @@ public class ProductRepositoryTest {
     @Test
     void testFindByIdProductIfDoesNotExist() {
         Product product1 = new Product();
-        product1.setProductName("Product 1");
-        product1.setProductQuantity(100);
+        product1.setProductName("Iphone 15 Pro Max");
+        product1.setProductQuantity(10);
         productRepository.create(product1);
 
         Product product2 = new Product();
-        product2.setProductName("Product 2");
-        product2.setProductQuantity(200);
+        product2.setProductName("Iphone 14 Pro Max");
+        product2.setProductQuantity(20);
         productRepository.create(product2);
 
         String randomId = UUID.randomUUID().toString();
@@ -105,8 +105,8 @@ public class ProductRepositoryTest {
     void testFindByIdProductIfMoreThanOneProduct() {
         for (int i = 0; i < 5; i++) {
             Product product = new Product();
-            product.setProductName(String.format("Product %d", i + 1));
-            product.setProductQuantity(100 + i);
+            product.setProductName(String.format("Iphone 15 Pro Max %d", i + 1));
+            product.setProductQuantity(10 + i);
             productRepository.create(product);
         }
 
@@ -125,8 +125,8 @@ public class ProductRepositoryTest {
     void testEditAndFindByIdProduct() {
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        product.setProductName("Product 1");
-        product.setProductQuantity(100);
+        product.setProductName("Iphone 15 Pro Max");
+        product.setProductQuantity(10);
         productRepository.create(product);
 
         Product findProductById = productRepository.findById(product.getProductId());
@@ -136,22 +136,22 @@ public class ProductRepositoryTest {
 
         Product editProductData = new Product();
         editProductData.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        editProductData.setProductName("Product 1 Edited");
-        editProductData.setProductQuantity(200);
+        editProductData.setProductName("Iphone 14 Pro Max");
+        editProductData.setProductQuantity(20);
         productRepository.edit(editProductData);
 
         Product editedProduct = productRepository.findById(editProductData.getProductId());
         assertEquals(editProductData.getProductId(), editedProduct.getProductId());
-        assertEquals("Product 1 Edited", editedProduct.getProductName());
-        assertEquals(200, editedProduct.getProductQuantity());
+        assertEquals("Iphone 14 Pro Max", editedProduct.getProductName());
+        assertEquals(20, editedProduct.getProductQuantity());
     }
 
     @Test
     void testEditProductIfQuantityPositive() {
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        product.setProductName("Product 1");
-        product.setProductQuantity(100);
+        product.setProductName("Iphone 15 Pro Max");
+        product.setProductQuantity(10);
         productRepository.create(product);
 
         Product findProductById = productRepository.findById(product.getProductId());
@@ -161,22 +161,22 @@ public class ProductRepositoryTest {
 
         Product editProductData = new Product();
         editProductData.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        editProductData.setProductName("Product 1 Edited");
-        editProductData.setProductQuantity(110);
+        editProductData.setProductName("Iphone 14 Pro Max");
+        editProductData.setProductQuantity(20);
         productRepository.edit(editProductData);
 
         Product editedProduct = productRepository.findById(editProductData.getProductId());
         assertEquals(editProductData.getProductId(), editedProduct.getProductId());
-        assertEquals("Product 1 Edited", editedProduct.getProductName());
-        assertEquals(110, editedProduct.getProductQuantity());
+        assertEquals("Iphone 14 Pro Max", editedProduct.getProductName());
+        assertEquals(20, editedProduct.getProductQuantity());
     }
 
     @Test
     void testEditProductIfQuantityNegative() {
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        product.setProductName("Product 1");
-        product.setProductQuantity(100);
+        product.setProductName("Iphone 15 Pro Max");
+        product.setProductQuantity(10);
         productRepository.create(product);
 
         Product findProductById = productRepository.findById(product.getProductId());
@@ -186,21 +186,21 @@ public class ProductRepositoryTest {
 
         Product editProductData = new Product();
         editProductData.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        editProductData.setProductName("Product 1 Edited");
-        editProductData.setProductQuantity(-120);
+        editProductData.setProductName("Iphone 14 Pro Max");
+        editProductData.setProductQuantity(-20);
         productRepository.edit(editProductData);
 
         Product editedProduct = productRepository.findById(editProductData.getProductId());
         assertEquals(editProductData.getProductId(), editedProduct.getProductId());
-        assertEquals("Product 1 Edited", editedProduct.getProductName());
+        assertEquals("Iphone 14 Pro Max", editedProduct.getProductName());
         assertEquals(0, editedProduct.getProductQuantity());
     }
 
     @Test
     void testDeleteAndFindByIdProduct() {
         Product product = new Product();
-        product.setProductName("Product 1");
-        product.setProductQuantity(100);
+        product.setProductName("Iphone 15 Pro Max");
+        product.setProductQuantity(10);
         productRepository.create(product);
 
         Product deletedProduct = productRepository.deleteById(product.getProductId());
@@ -223,13 +223,13 @@ public class ProductRepositoryTest {
     @Test
     void testDeleteProductIfDoesNotExist() {
         Product product1 = new Product();
-        product1.setProductName("Product 1");
-        product1.setProductQuantity(100);
+        product1.setProductName("Iphone 15 Pro Max");
+        product1.setProductQuantity(10);
         productRepository.create(product1);
 
         Product product2 = new Product();
-        product2.setProductName("Product 2");
-        product2.setProductQuantity(200);
+        product2.setProductName("Iphone 14 Pro Max");
+        product2.setProductQuantity(20);
         productRepository.create(product2);
 
         String randomId = UUID.randomUUID().toString();

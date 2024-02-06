@@ -55,7 +55,7 @@ public class CreateProductFunctionalTest {
         String welcomeMessage = driver.findElement(By.tagName("h2")).getText();
 
         // Verify
-        assertEquals("Product' List", welcomeMessage);
+        assertEquals("Product List", welcomeMessage);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class CreateProductFunctionalTest {
         WebElement createButton = driver.findElement(By.linkText("Create Product"));
         createButton.click();
 
-        String productName = "Product 1";
+        String productName = "Iphone 15 Pro Max";
         WebElement productNameInput = driver.findElement(By.name("productName"));
         productNameInput.sendKeys(productName);
 
