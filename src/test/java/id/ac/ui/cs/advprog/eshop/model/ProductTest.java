@@ -13,8 +13,8 @@ public class ProductTest {
     void setUp() {
         this.product = new Product();
         this.product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        this.product.setProductName("Product 1");
-        this.product.setProductQuantity(100);
+        this.product.setProductName("Iphone 15 Pro Max");
+        this.product.setProductQuantity(10);
     }
 
     @Test
@@ -24,11 +24,11 @@ public class ProductTest {
 
     @Test
     void testGetProductName() {
-        assertEquals("Product 1", this.product.getProductName());
+        assertEquals("Iphone 15 Pro Max", this.product.getProductName());
     }
 
     @Test
     void testGetProductQuantity() {
-        assertEquals(100, this.product.getProductQuantity());
+        assertEquals(10, this.product.getProductQuantity());
     }
 }
