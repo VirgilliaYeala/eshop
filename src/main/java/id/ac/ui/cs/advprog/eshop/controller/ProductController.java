@@ -25,7 +25,7 @@ public class ProductController {
   public String createProductPage(Model model) {
     Product product = new Product(); // ngeiniciate model product untuk pertama kali
     model.addAttribute("product", product);
-    return "CreateProduct";
+    return "createProduct";
   }
 
 
@@ -39,14 +39,14 @@ public class ProductController {
   public String productListPage(Model model) {
     List<Product> allProducts = service.findAll();
     model.addAttribute("products", allProducts);
-    return "ProductList";
+    return "productList";
   }
 
   @GetMapping("/edit/{productId}")
   public String editProductPage(@PathVariable("productId") String productId, Model model) {
     Product product = service.findById(productId);
     model.addAttribute("product", product);
-    return "EditProduct";
+    return "editProduct";
   }
 
   @PutMapping("/edit")
