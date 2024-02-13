@@ -46,7 +46,6 @@ public class ProductServiceImpl implements ProductService {
     return editedProduct;
   }
   public Product deleteById(String productId) {
-    Product deletedProduct = productRepository.deleteById(productId);
-    return  deletedProduct;
+    return productRepository.deleteById(productId);
   }
 }
