@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-class EshopApplicationTestsNew {
+class EshopApplicationTests {
 
     @Autowired
     private EshopApplication application;
