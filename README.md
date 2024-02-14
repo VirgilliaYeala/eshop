@@ -17,8 +17,13 @@ Setelah saya meninjau kode dari file `CreateProductFunctionalTest.java` yang tel
 
 <details>
 <summary>Tutorial 2</summary>
+
+## Reflection 1
+Selama proses deployment ke branch utama, saya menghadapi masalah dengan kualitas kode yang menyebabkan kesalahan pada aplikasi web setelah di-deploy. Kesalahan yang muncul adalah "WhiteLabel Error Page", yang menunjukkan ada masalah dengan pemetaan controller di aplikasi. Setelah investigasi lebih lanjut melalui log dan event di platform PaaS koyeb.com, saya menemukan bahwa masalah tersebut disebabkan oleh sistem file yang bersifat case-sensitive, yang tidak konsisten dengan penamaan file controller untuk halaman produk dan beranda.
+
+Mengingat pentingnya penamaan file yang konsisten dalam pengembangan aplikasi, terutama ketika bekerja dengan sistem yang case-sensitive, strategi yang saya ambil adalah melakukan normalisasi penamaan file. Saya memastikan bahwa semua referensi ke file dalam kode sumber mengikuti konvensi yang sama dan konsisten dalam penggunaan huruf besar dan kecil. Setelah menyesuaikan penamaan file yang case-sensitive tersebut, saya melakukan commit perubahan ini dan mengepush ulang ke branch utama.
   
-## Reflection
+## Reflection 2
 Melalui pengalaman langsung saya dalam menerapkan `CI/CD` di kelas, serta evaluasi mendalam terhadap modul tutorial yang diberikan, saya memiliki keyakinan bahwa alur kerja CI/CD yang saya rancang sudah diimplementasikan dengan efektif. Berikut alasan saya :
 
 1. Setiap perubahan kode yang saya commit dan push ke branch di repositori, langsung dilakukan *suite tes* secara otomatis . Hal ini memastikan kode yang terintegrasi tidak terdapat kesalahan atau error, sehingga mengurangi risiko masalah pada *base code* yang ada.
