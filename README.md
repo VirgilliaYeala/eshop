@@ -4,15 +4,15 @@
 **Kelas** : **Advance Programming - A**
 
 ## Application 💻
-### SonarCloud
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=irgilliayeala_eshop&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=irgilliayeala_eshop)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=irgilliayeala_eshop&metric=coverage)](https://sonarcloud.io/summary/new_code?id=irgilliayeala_eshop)
 
 ### Tautan 🔗
 Website [ESHOP](https://eshop-yeala-yela.koyeb.app/)
-SonarCLoud [ESHOP]([https://eshop-yeala-yela.koyeb.app/](https://sonarcloud.io/summary/new_code?id=irgilliayeala_eshop))
 
-### Reflection
+SonarCLoud [ESHOP](https://sonarcloud.io/summary/new_code?id=irgilliayeala_eshop)
+
+## Reflection 📙
 <details>
 <summary>Tutorial 1</summary>
   
