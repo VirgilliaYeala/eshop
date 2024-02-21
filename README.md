@@ -1,3 +1,16 @@
+# Tutorial Pemrograman Lanjut 
+**Nama** : **Virgillia Yeala Prabowo** <br/>
+**NPM** : **2206829856** <br/>
+**Kelas** : **Advance Programming - A**
+
+## Application 💻
+### SonarCloud
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=irgilliayeala_eshop&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=irgilliayeala_eshop)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=irgilliayeala_eshop&metric=coverage)](https://sonarcloud.io/summary/new_code?id=irgilliayeala_eshop)
+
+### Tautan 🔗
+Website [ESHOP](https://eshop-yeala-yela.koyeb.app/)
+
 <details>
 <summary>Tutorial 1</summary>
   
