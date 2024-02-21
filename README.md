@@ -10,7 +10,9 @@
 
 ### Tautan 🔗
 Website [ESHOP](https://eshop-yeala-yela.koyeb.app/)
+SonarCLoud [ESHOP]([https://eshop-yeala-yela.koyeb.app/](https://sonarcloud.io/summary/new_code?id=irgilliayeala_eshop))
 
+### Reflection
 <details>
 <summary>Tutorial 1</summary>
   
