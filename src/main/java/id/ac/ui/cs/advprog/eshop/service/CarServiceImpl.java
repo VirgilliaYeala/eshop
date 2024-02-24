@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import id.ac.ui.cs.advprog.eshop.model.Car;
@@ -12,8 +11,12 @@ import id.ac.ui.cs.advprog.eshop.repository.CarRepository;
 
 @Service
 public class CarServiceImpl implements CarService {
-  @Autowired
+  
   private CarRepository carRepository;
+
+  public CarServiceImpl(CarRepository carRepository) {
+    this.carRepository = carRepository;
+  }
 
   @Override
   public Car create(Car car) {
