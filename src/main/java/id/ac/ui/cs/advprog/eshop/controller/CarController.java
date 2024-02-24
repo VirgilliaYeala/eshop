@@ -1,7 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Car;
-import id.ac.ui.cs.advprog.eshop.service.CarServiceImpl;
+import id.ac.ui.cs.advprog.eshop.service.CarService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequestMapping("/car")
 class CarController {
 
-    private CarServiceImpl carservice;
+    private CarService carservice;
 
-    public CarController(CarServiceImpl carservice) {
+    public CarController(CarService carservice) {
         this.carservice = carservice;
     }
 
