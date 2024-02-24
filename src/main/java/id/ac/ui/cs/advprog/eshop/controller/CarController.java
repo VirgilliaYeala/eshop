@@ -2,6 +2,7 @@ package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Car;
 import id.ac.ui.cs.advprog.eshop.service.CarService;
+import id.ac.ui.cs.advprog.eshop.service.ServiceManager;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 class CarController {
 
     private CarService carservice;
+    private ServiceManager<Car> service;
 
-    public CarController(CarService carservice) {
+    public CarController(ServiceManager<Car> service, CarService carservice) {
+        this.service = service;
         this.carservice = carservice;
     }
 
@@ -31,20 +34,20 @@ class CarController {
 
     @PostMapping("/createCar")
     public String createCarPost(@ModelAttribute Car car, Model model) {
-        carservice.create(car);
+        service.create(car);
         return "redirect:listCar";
     }
 
     @GetMapping("/listCar")
     public String carListPage(Model model) {
-        List<Car> allCars = carservice.findAll();
+        List<Car> allCars = service.findAll();
         model.addAttribute("cars", allCars);
         return "CarList";
     }
 
     @GetMapping("/editCar/{carId}")
     public String editCarPage(@PathVariable String carId, Model model) {
-        Car car = carservice.findById(carId);
+        Car car = service.findById(carId);
         model.addAttribute("car", car);
         return "EditCar";
     }
@@ -58,7 +61,7 @@ class CarController {
 
     @PostMapping("/deleteCar")
     public String deleteCar(@RequestParam("carId") String carId) {
-        carservice.deleteCarById(carId);
+        service.deleteById(carId);
         return "redirect:listCar";
     }
 }

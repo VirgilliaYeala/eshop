@@ -2,6 +2,7 @@ package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
+import id.ac.ui.cs.advprog.eshop.service.ServiceManager;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-  private ProductService service;
+  private ServiceManager<Product> service;
+  private ProductService productservice;
 
-  public ProductController(ProductService service) {
+  public ProductController(ServiceManager<Product> service, ProductService productservice) {
     this.service = service;
+    this.productservice = productservice;
   }
 
   @GetMapping("/create")
@@ -49,7 +52,7 @@ public class ProductController {
 
   @PutMapping("/edit")
   public String editProductPost(@ModelAttribute Product product) {
-    service.edit(product);
+    productservice.edit(product);
     return "redirect:list";
   }
 
