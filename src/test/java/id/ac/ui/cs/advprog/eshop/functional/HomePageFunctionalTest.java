@@ -7,24 +7,23 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest ;
 import org.springframework.boot.test.web.server.LocalServerPort;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ExtendWith(SeleniumJupiter.class)
-class HomePageFunctionalTest {
-    /**
+public class HomePageFunctionalTest {
+    /*
      * The port number assigned to the running application during test execution.
      * Set automatically during each test run by Spring Framework's test context.
-     */
+     * */
     @LocalServerPort
     private int serverPort;
 
-    /**
-     * The base URL for testing. Default value to {@code http://localhost}.
+    /*
+     * The base URL for testing. Default to {@code http://localhost}.
      */
     @Value("${app.baseUrl:http://localhost}")
     private String testBaseUrl;
@@ -32,17 +31,17 @@ class HomePageFunctionalTest {
     private String baseUrl;
 
     @BeforeEach
-    void setUp() {
+    void setupTest(){
         baseUrl = String.format("%s:%d", testBaseUrl, serverPort);
     }
 
     @Test
     void pageTitle_isCorrect(ChromeDriver driver) throws Exception {
-        // Exercise
+//        Exercise
         driver.get(baseUrl);
         String pageTitle = driver.getTitle();
 
-        // Verify
+//        Verify
         assertEquals("VYP Shop", pageTitle);
     }
 
@@ -50,9 +49,10 @@ class HomePageFunctionalTest {
     void welcomeMessage_homePage_isCorrect(ChromeDriver driver) throws Exception {
         // Exercise
         driver.get(baseUrl);
-        String welcomeMessage = driver.findElement(By.tagName("h3")).getText();
+        String welcomeMessage = driver.findElement(By.tagName("h3"))
+                .getText();
 
         // Verify
-        assertEquals("welcome", welcomeMessage);
+        assertEquals("Welcome", welcomeMessage);
     }
 }
