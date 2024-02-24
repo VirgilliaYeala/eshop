@@ -51,3 +51,89 @@ Semua ini menegaskan bahwa kami telah berhasil mengadopsi prinsip-prinsip CI/CD 
 
 </details>
 
+<details>
+<summary>Tutorial 3</summary>
+  
+## Reflection 1
+Berikut adalah prinsip yang saya gunakan untuk project eshop saya:
+1. **SRP (Single Responsibility Principle)** : Setiap kelas harusnya memiliki 1 fungsionalitas saja. Oleh karena itu, saya menerapkan prinsip ini untuk memisahkan `CarController` dan `ProductController` di file yang berbeda.
+2. **OCP (Open/Closed Principle)** : Setiap modul harus terbuka untuk ekstensi, tetapi tertutup oleh modifikasi. Oleh karena itu, saya membuat class interface baru untuk `CarRepository` dan `ProductRepository` agar dapat memenuhi prinsip tersebut. 
+3. **ISP (Interface Segregation Principle)** : Interface tidak bisa memaksa sebuah class untuk ngeimplementasi apa yang tidak bisa lakukannya. Oleh karena itu, saya membuat class `ServiceManager` untuk mengumpulkan implementasi antara `CarService` dan `ProductService`yang mirip dan memisahkan implementasi yang merupakan ciri khas baik dari `CarService` maupun `ProductService`.
+4. **DIP (Dependency Inversion Principle)** : Setiap komponen harus bergantung pada implementasi yang abstrak bukan pada implementasi konkret. Oleh karena itu saya mengubah atribut yang ada di `CarController` yang tadinya menggunakan `CarServiceImpl` menjadi `CarService`.
+
+## Reflection 2
+Keuntungan dari penerapan prinsip SOLID pada project eshop saya:
+1. Dengen memenuhi prinsip DIP, project saya terjadi **peningkatan reusabilitas** yang lebih besar, yang artinya komponen-komponennya dapat digunakan kembali lebih mudah karena ketergantungan pada abstraksi daripada implementasi, Contoh:
+Mengubah atribut yang ada di `CarController` yang tadinya menggunakan `CarServiceImpl` menjadi `CarService`
+```java
+...
+@Controller
+@RequestMapping("/car")
+class CarController {
+
+    private CarService carservice;
+    private ServiceManager<Car> service;
+
+    public CarController(ServiceManager<Car> service, CarService carservice) {
+        this.service = service;
+        this.carservice = carservice;
+    }
+}
+...
+```
+2. Dengan memenuhi prinsip ISP, saya dapat dengan **mudah melakukan pemeliharaan** pada project saya.Dengan setiap antarmuka hanya berisi metode yang spesifik untuk kelas-kelas yang relevan, perubahan pada satu antarmuka tidak akan mempengaruhi kelas-kelas lain yang tidak membutuhkan metode tersebut, Contoh: Membuat class `ServiceManager` untuk mengumpulkan implementasi antara `CarService` dan `ProductService`yang mirip dan memisahkan implementasi yang merupakan ciri khas baik dari `CarService` maupun `ProductService`. Berikut `ServiceManager.java `:
+```java
+package id.ac.ui.cs.advprog.eshop.service;
+
+import java.util.List;
+
+public interface ServiceManager<T> {
+    T create(T entity);
+    List<T> findAll();
+    T findById(String id);
+    void deleteById(String id);
+}
+```
+## Reflection 3
+Keriguan yang akan saya alami jika saya tidak menerapkan prinsip SOLID dalam project eshop saya:
+1. Tanpa memenuhi prinsip ISP, saya mungkin terpaksa untuk bergantung pada antarmuka yang tidak seharusnya saya gunakan, yang mengakibatkan ketergantungan yang tidak perlu dan kompleksitas yang meningkat, Contoh:
+```java
+package id.ac.ui.cs.advprog.eshop.service;
+
+import java.util.List;
+
+public interface ServiceManager<T> {
+    T create(T entity);
+    List<T> findAll();
+    T findById(String id);
+    void deleteById(String id);
+    // relevan untuk Car, tidak cukup relevan untuk Product
+    void drive(String id);
+}
+```
+2. Tanpa memenuhi prinsip SRP, saya akan kesulitan dalam memahami apa yang sebenarnya dilakukan oleh kelas tersebut dan kesulitan melihat perubahan kode pada project saya, karena setiap kelas memiliki tanggung jawab yang beragam, membuat perubahan pada salah satu tanggung jawab dapat memengaruhi fungsionalitas lainnya, Contoh:
+Didalam file `ProductController.java`
+```java
+...
+@Controller
+@RequestMapping("/product")
+public class ProductController {
+  private ProductService service;
+
+  public ProductController(ProductService service) {
+    this.service = service;
+  }
+}
+...
+// posisi ada dibawah productcontroller membuat saya sulit mencarinya
+@Controller
+@RequestMapping("/car")
+class CarController extends ProductController {
+
+  public CarController(ProductService service) {
+    super(service);
+  }
+}
+```
+</details>
+
