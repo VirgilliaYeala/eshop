@@ -10,8 +10,8 @@ import id.ac.ui.cs.advprog.eshop.model.Car;
 import id.ac.ui.cs.advprog.eshop.repository.CarRepository;
 
 @Service
-public class CarServiceImpl implements CarService {
-  
+public class CarServiceImpl implements ServiceManager<Car>, CarService {
+
   private CarRepository carRepository;
 
   public CarServiceImpl(CarRepository carRepository) {
@@ -44,7 +44,7 @@ public class CarServiceImpl implements CarService {
   }
 
   @Override
-  public void deleteCarById(String carId) {
+  public void deleteById(String carId) {
     carRepository.delete(carId);
   }
 }

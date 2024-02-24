@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ServiceManager<Product>, ProductService {
 
   private ProductRepository productRepository;
 
@@ -41,7 +41,8 @@ public class ProductServiceImpl implements ProductService {
     productRepository.edit(editedProduct);
     return editedProduct;
   }
-  public Product deleteById(String productId) {
-    return productRepository.deleteById(productId);
+
+  public void deleteById(String productId) {
+    productRepository.deleteById(productId);
   }
 }
