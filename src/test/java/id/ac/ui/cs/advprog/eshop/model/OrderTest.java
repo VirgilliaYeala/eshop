@@ -45,22 +45,22 @@ class OrderTest {
         Order order = new Order("dbd4aff4-9a7f-4603-92c2-eaf529271cc9", 
             this.products, 1708560000L, "Safira Sudrajat");
 
-        assertSame(this.products, order.getProducts());
-        assertEquals(2, order.getProducts().size());
-        assertEquals("Sampo Cap Bambang", order.getProducts().get(0).getProductName());
-        assertEquals("Sabun Cap Usep", order.getProducts().get(1).getProductName());
+        assertSame(this.products, order.getOrderProducts());
+        assertEquals(2, order.getOrderProducts().size());
+        assertEquals("Sampo Cap Bambang", order.getOrderProducts().get(0).getProductName());
+        assertEquals("Sabun Cap Usep", order.getOrderProducts().get(1).getProductName());
 
-        assertEquals("dbd4aff4-9a7f-4603-92c2-eaf529271cc9", order.getId());
+        assertEquals("dbd4aff4-9a7f-4603-92c2-eaf529271cc9", order.getOrderId());
         assertEquals(1708560000L, order.getOrderTime());
         assertEquals("Safira Sudrajat", order.getAuthor());
-        assertEquals("WAITING_PAYMENT", order.getStatus());
+        assertEquals("WAITING_PAYMENT", order.getOrderStatus());
     }
 
     @Test
     void testCreateOrderSuccessStatus() {
         Order order = new Order("dbd4aff4-9a7f-4603-92c2-eaf529271cc9", 
             this.products, 1708560000L, "Safira Sudrajat", "SUCCESS");
-        assertEquals("SUCCESS", order.getStatus());
+        assertEquals("SUCCESS", order.getOrderStatus());
     }
 
     @Test
@@ -75,8 +75,8 @@ class OrderTest {
     void testSetStatusToCancelled() {
         Order order = new Order("dbd4aff4-9a7f-4603-92c2-eaf529271cc9", 
             this.products, 1708560000L, "Safira Sudrajat");
-        order.setStatus("CANCELED");
-        assertEquals("CANCELED", order.getStatus());
+        order.setOrderStatus("CANCELED");
+        assertEquals("CANCELED", order.getOrderStatus());
     }
 
     @Test
@@ -84,7 +84,7 @@ class OrderTest {
         Order order = new Order("dbd4aff4-9a7f-4603-92c2-eaf529271cc9", 
             this.products, 1708560000L, "Safira Sudrajat");
         assertThrows(IllegalArgumentException.class, () -> {
-            order.setStatus("MEOW");
+            order.setOrderStatus("MEOW");
         });
     }
 }
