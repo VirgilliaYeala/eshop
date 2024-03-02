@@ -6,6 +6,8 @@ import lombok.Getter;
 import java.util.Arrays;
 import java.util.List;
 
+import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+
 @Builder
 @Getter
 public class Order {
@@ -19,7 +21,7 @@ public class Order {
         this.orderId = orderId;
         this.orderTime = orderTime;
         this.author = author;
-        this.orderStatus = "WAITING_PAYMENT";
+        this.orderStatus = OrderStatus.WAITING_PAYMENT.getValue();
         
         if (orderProducts.isEmpty()) {
             throw new IllegalArgumentException();
@@ -30,21 +32,14 @@ public class Order {
 
     public Order(String orderId, List<Product> orderProducts, Long orderTime, String author, String orderStatus) {
         this(orderId, orderProducts, orderTime, author);
-
-        String[] orderStatusList = {"WAITING_PARMENT", "FAILED","SUCCESS", "CANCELLED"};
-        if (Arrays.stream(orderStatusList).noneMatch(item -> (item.equals(orderStatus)))) {
-            throw new IllegalArgumentException();
-        } else {
-            this.orderStatus = orderStatus;
-        }
+        this.setOrderStatus(orderStatus);
     }
 
     public void setOrderStatus(String orderStatus) {
-        String[] orderStatusList = {"WAITING_PARMENT", "FAILED","SUCCESS", "CANCELLED"};
-        if (Arrays.stream(orderStatusList).noneMatch(item -> (item.equals(orderStatus)))) {
-            throw new IllegalArgumentException();
-        } else {
+        if (OrderStatus.contains(orderStatus)) {
             this.orderStatus = orderStatus;
+        } else {
+            throw new IllegalArgumentException();
         }
     }
 }
