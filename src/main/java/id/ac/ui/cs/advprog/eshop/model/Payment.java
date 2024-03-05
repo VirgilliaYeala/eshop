@@ -12,5 +12,5 @@ public class Payment {
     private String paymentMethod;
     private Long orderTime;
     private Map<String, String> paymentData;
-
+    private Order paymentOrder;
 }
