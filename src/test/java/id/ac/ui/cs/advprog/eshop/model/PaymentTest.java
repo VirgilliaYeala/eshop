@@ -95,7 +95,7 @@ public class PaymentTest {
         setPaymentDataVoucherValid();
 
         assertThrows(IllegalArgumentException.class, () -> {
-            Payment payment = new Payment(this.order.getId(), "BANK_TRANSFER", this.paymentData);
+            Payment payment = new Payment(this.order.getId(), "CASH_ON_DELIVERY", this.paymentData);
         });
     }
 
@@ -104,7 +104,7 @@ public class PaymentTest {
         setPaymentDataEmpty();
 
         assertThrows(IllegalArgumentException.class, () -> {
-            Payment payment = new Payment(this.order.getId(), "BANK_TRANSFER", this.paymentData);
+            Payment payment = new Payment(this.order.getId(), "CASH_ON_DELIVERY", this.paymentData);
         });
     }
 
