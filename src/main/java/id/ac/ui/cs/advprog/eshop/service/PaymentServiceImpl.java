@@ -1,44 +1,87 @@
 package id.ac.ui.cs.advprog.eshop.service;
 
-import id.ac.ui.cs.advprog.eshop.model.Order;
-import id.ac.ui.cs.advprog.eshop.model.Payment;
-import id.ac.ui.cs.advprog.eshop.repository.PaymentRepository;
-
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.UUID;
 
-public class PaymentServiceImpl {
-    private final PaymentRepository paymentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
-    public PaymentServiceImpl(PaymentRepository paymentRepository) {
-        this.paymentRepository = paymentRepository;
-    }
+import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
+import id.ac.ui.cs.advprog.eshop.enums.StatusPayment;
+import id.ac.ui.cs.advprog.eshop.model.BankTransfer;
+import id.ac.ui.cs.advprog.eshop.model.Order;
+import id.ac.ui.cs.advprog.eshop.model.Payment;
+import id.ac.ui.cs.advprog.eshop.model.Voucher;
+import id.ac.ui.cs.advprog.eshop.repository.PaymentRepository;
+
+public class PaymentServiceImpl implements PaymentService {
+
+    @Autowired
+    private PaymentRepository paymentRepository;
+    @Autowired
 
     @Override
-    public Payment addPayment(Order order, String paymentMethod, Map<String, String> paymentData) {
-        Payment payment = new Payment(order, paymentMethod, paymentData);
+    public Payment addPayment(Order order, String method, Map<String, String> data) {
+        Payment payment;
+
+        if (method.equals(PaymentMethod.BANK_TRANSFER.getValue())) {
+            payment = createBankPayment(order, method, data);
+        } else if (method.equals(PaymentMethod.VOUCHER.getValue())) {
+            payment = createVouvherPayment(order, method, data);
+        } else {
+            throw new IllegalArgumentException("Invalid payment method");
+        }
+
         paymentRepository.save(payment);
         return payment;
     }
 
     @Override
+    public List<Payment> findAll() {
+        return paymentRepository.findAll();
+    }
+
+    @Override
+    public Payment findById(String id) {
+        return paymentRepository.findById(id);
+    }
+
+    @Override
     public Payment setStatus(Payment payment, String status) {
         payment.setStatus(status);
-        if (status.equals("SUCCESS")) {
-            payment.getOrder().setStatus("SUCCESS");
-        } else if (status.equals("REJECTED")) {
-            payment.getOrder().setStatus("FAILED");
+
+        if (paymentRepository.findById(payment.getPaymentId()) == null){
+            throw new NoSuchElementException("Payment not found");
         }
-        return paymentRepository.save(payment);
+
+        if (payment.getStatusPayment().equals(StatusPayment.SUCCESS.getValue())){
+            payment.getPaymentOrder().setOrderStatus(OrderStatus.SUCCESS.getValue());
+        }else if(payment.getStatusPayment().equals(StatusPayment.REJECTED.getValue())){
+            payment.getPaymentOrder().setOrderStatus(OrderStatus.FAILED.getValue());
+        } else {
+            throw new IllegalArgumentException("Invalid payment status");
+        }
+
+        return payment;
+    }
+    
+    public Payment createBankPayment(Order order, String method, Map<String, String> data) {
+        return new BankTransfer(
+            UUID.randomUUID().toString(),
+            method,
+            order,
+            data
+        );
     }
 
-    @Override
-    public Payment getPayment(String paymentId) {
-        return paymentRepository.findById(paymentId);
-    }
-
-    @Override
-    public List<Payment> getAllPayments() {
-        return paymentRepository.findAll();
+    public Payment createVouvherPayment(Order order, String method, Map<String, String> data) {
+        return new Voucher(
+            UUID.randomUUID().toString(),
+            method,
+            order,
+            data
+        );
     }
 }
