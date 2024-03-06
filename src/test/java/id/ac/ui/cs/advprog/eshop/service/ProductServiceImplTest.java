@@ -2,9 +2,10 @@ package id.ac.ui.cs.advprog.eshop.service;
 import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -13,14 +14,14 @@ import java.util.List;
 import java.util.Arrays;
 
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class ProductServiceImplTest {
-
-    @InjectMocks
-    private ProductServiceImpl productService;
 
     @Mock
     private ProductRepository productRepository;
+    @InjectMocks
+    private ProductServiceImpl productService;
+
 
     @Test
     void testCreateProduct() {

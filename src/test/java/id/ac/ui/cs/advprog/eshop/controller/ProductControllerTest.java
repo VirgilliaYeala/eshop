@@ -1,26 +1,41 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 import org.mockito.InjectMocks;
 import id.ac.ui.cs.advprog.eshop.model.Product;
-import id.ac.ui.cs.advprog.eshop.service.ProductServiceImpl;
+import id.ac.ui.cs.advprog.eshop.service.ProductService;
+import id.ac.ui.cs.advprog.eshop.service.ServiceManager;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.Model;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class ProductControllerTest {
 
-    @InjectMocks
-    private ProductController controller;
     @Mock
     private Model model;
     @Mock
-    private ProductServiceImpl service;
+    private ServiceManager<Product> service;
+    @Mock
+    private ProductService serviceProduct;
     @Mock
     private Product product;
+    @InjectMocks
+    private ProductController controller;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
     @Test
     void testCreateProductPage() {
@@ -53,15 +68,16 @@ class ProductControllerTest {
 
     @Test
     void testEditProductPost(){
-        when(service.edit(product)).thenReturn(product);
-        String editProductPostPage = controller.editProductPost(product);
-        assertEquals("redirect:list", editProductPostPage);
+        Product product = new Product();
+        String expectedViewName = "redirect:list";
+        String actualViewName = controller.editProductPost(product);
+        assertEquals(expectedViewName, actualViewName);
+        verify(serviceProduct, times(1)).edit(product);
 
     }
 
     @Test
     void testDeleteProduct(){
-        when(service.findById(String.valueOf(0))).thenReturn(new Product());
         String deleteProductPage = controller.deleteProduct(String.valueOf(0));
         assertEquals("redirect:../list", deleteProductPage);
 
