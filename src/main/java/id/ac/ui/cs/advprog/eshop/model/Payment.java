@@ -12,7 +12,7 @@ public class Payment {
     private String paymentId;
     private String paymentMethod;
     private Long orderTime;
-    private Map<String, String> paymentData;
+    Map<String, String> paymentData;
     private Order paymentOrder;
     private String statusPayment;
 
