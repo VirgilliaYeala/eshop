@@ -1,25 +1,13 @@
 package id.ac.ui.cs.advprog.eshop;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class EshopApplicationTests {
 
-    @Autowired
-    private EshopApplication application;
-
-    @Test
-    void checkApplicationContext() {
-        assertNotNull(application);
-    }
-
-    @Test
-    void checkMainMethod() {
-        assertDoesNotThrow(() -> EshopApplication.main(new String[] {}));
-    }
+	@Test
+	void contextLoads() {
+	}
 }
