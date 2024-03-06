@@ -7,6 +7,7 @@ public enum StatusPayment {
     SUCCESS("SUCCESS"),
     REJECTED("REJECTED"),
     PENDING("PENDING");
+    
     private final String value;
 
     private StatusPayment(String value){
