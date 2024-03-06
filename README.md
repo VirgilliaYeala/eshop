@@ -136,3 +136,13 @@ class CarController extends ProductController {
 }
 ```
 </details>
+
+<details>
+<summary>Tutorial 4</summary>
+
+## Reflection 1
+Berdasarkan evaluasi saya terhadap pertanyaan reflektif yang diusulkan oleh Percival (2017) tentang alur TDD yang saya gunakan, saya menemukan bahwa proses ini memberikan manfaat yang signifikan bagi saya. Pengujian fungsional telah memastikan bahwa aplikasi saya berfungsi dengan baik dari perspektif pengguna, sementara pengujian kasus uji ujung telah dilakukan secara menyeluruh. Namun, ada ruang untuk meningkatkan keakuratan dengan pengujian terintegrasi yang lebih komprehensif. Pengujian juga memberi saya kepercayaan untuk melakukan refaktorisasi dan mendorong desain yang baik, meskipun saya perlu mempertimbangkan penambahan pengujian unit untuk umpan balik yang lebih baik tentang desain kode. Secara keseluruhan, alur TDD telah membantu saya dalam pengembangan perangkat lunak saya, meskipun ada aspek yang perlu saya perbaiki.
+## Reflection 2
+Pengujian yang saya buat telah mengikuti prinsip F.I.R.S.T. karena saya menekankan pentingnya menjalankan pengujian sesegera mungkin, sehingga tidak mengganggu alur kerja saya. Saya memusatkan perhatian pada pengujian unit untuk memastikan bahwa setiap bagian dari kode dapat diuji secara terisolasi dan efisien. Selain itu, saya berupaya menghindari ketergantungan antara pengujian, sehingga hasilnya tidak saling memengaruhi. Dalam implementasi pengujian, saya menggunakan berbagai teknik seperti dummy, mocks, setUp, dan tearDown untuk menghindari duplikasi dan membersihkan objek. Pengujian saya juga dijalankan secara konsisten untuk memastikan konsistensi dalam hasilnya. Selanjutnya, jika ada pemanggilan fungsi lain dalam fungsi yang diuji, saya menerapkan teknik Test Double. Dengan asersi yang ketat, pengujian saya bisa mengesahkan hasilnya secara mandiri. Secara keseluruhan, pengujian saya mencakup semua skenario yang mungkin terjadi, termasuk jalur bahagia dan jalur tidak bahagia, serta semua kemungkinan kesalahan dan hasil yang mungkin.
+
+</details>
