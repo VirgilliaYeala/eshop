@@ -6,12 +6,12 @@ import lombok.Getter;
 
 @Getter
 public class BankTransfer extends Payment {
-    public BankTransfer(String id, String method, Order order, Map<String, String> paymentData, String status) {
-        super(id, method, order, paymentData, status);
+    public BankTransfer(String paymentId, String paymentMethod, Order paymentOrder, Map<String, String> paymentData, String statusPayment) {
+        super (paymentId, paymentMethod, paymentOrder, paymentData, statusPayment);
     }
 
-    public BankTransfer(String id, String method, Order order, Map<String, String> paymentData) {
-        super(id, method, order, paymentData);
+    public BankTransfer(String paymentId, String paymentMethod, Order paymentOrder, Map<String, String> paymentData) {
+        super (paymentId, paymentMethod, paymentOrder, paymentData);
     }
 
     @Override
